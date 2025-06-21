@@ -18,8 +18,10 @@ class CreateView extends GetView<CreateController> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF00695C),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
+      backgroundColor: const Color(0xFFB2DFDB),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Card(
@@ -129,7 +131,7 @@ class CreateView extends GetView<CreateController> {
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue, // 🎨 Warna biru
+                      backgroundColor: Color(0xFF00695C),
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       textStyle: const TextStyle(fontSize: 16),
                     ),

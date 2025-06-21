@@ -21,9 +21,10 @@ class EditView extends GetView<EditController> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF00695C),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
+      backgroundColor: const Color(0xFFB2DFDB),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -125,7 +126,7 @@ class EditView extends GetView<EditController> {
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Color(0xFF00695C),
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       textStyle: const TextStyle(fontSize: 16),
                     ),
