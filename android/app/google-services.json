@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "931306499023",
+    "project_id": "tebu-app",
+    "storage_bucket": "tebu-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931306499023:android:4c1a966492f60ae291c0ba",
+        "android_client_info": {
+          "package_name": "com.agung.aplikasi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzwMg59X7zdNyppYenRfrFqzS8WoFsm6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931306499023:android:1a46c2c6090272b291c0ba",
+        "android_client_info": {
+          "package_name": "com.example.tebu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzwMg59X7zdNyppYenRfrFqzS8WoFsm6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
