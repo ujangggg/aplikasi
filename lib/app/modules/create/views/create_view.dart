@@ -8,7 +8,18 @@ class CreateView extends GetView<CreateController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('CreateView'), centerTitle: true),
+      appBar: AppBar(
+        title: Text(
+          'Tambahkan Muatan',
+          style: const TextStyle(
+            color: Colors.white, // 🎨 Warna teks putih
+            fontWeight: FontWeight.bold, // 🅱️ Bold
+            fontSize: 20,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Card(
@@ -21,19 +32,28 @@ class CreateView extends GetView<CreateController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text("Nama Sopir"),
+                Text(
+                  "Nama Sopir",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 8),
                 TextField(
+                  controller: controller.sopirC,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Masukkan nama sopir',
                   ),
                 ),
+
                 const SizedBox(height: 16),
 
-                const Text("Muatan"),
+                const Text(
+                  "Muatan",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 8),
                 TextField(
+                  controller: controller.muatanC,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Masukkan jumlah muatan',
@@ -42,9 +62,13 @@ class CreateView extends GetView<CreateController> {
                 ),
                 const SizedBox(height: 16),
 
-                const Text("Tanggal"),
+                const Text(
+                  "Tanggal",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 8),
                 TextField(
+                  controller: controller.tanggalC,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Masukkan tanggal (yyyy-mm-dd)',
@@ -53,19 +77,64 @@ class CreateView extends GetView<CreateController> {
                 ),
                 const SizedBox(height: 24),
 
-                ElevatedButton.icon(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Data disimpan')),
-                    );
-                  },
-                  icon: const Icon(Icons.save),
-                  label: const Text('Simpan'),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    textStyle: const TextStyle(fontSize: 16),
-                  ),
-                ),
+                Obx(() {
+                  return ElevatedButton.icon(
+                    onPressed:
+                        controller.isLoading.value
+                            ? null
+                            : () {
+                              final nama = controller.sopirC.text;
+                              final muatanText = controller.muatanC.text;
+                              final tanggalText = controller.tanggalC.text;
+
+                              if (nama.isEmpty ||
+                                  muatanText.isEmpty ||
+                                  tanggalText.isEmpty) {
+                                Get.snackbar(
+                                  'Error',
+                                  'Semua field harus diisi',
+                                );
+                                return;
+                              }
+
+                              try {
+                                final muatan = int.parse(muatanText);
+                                final tanggal = DateTime.parse(tanggalText);
+
+                                controller.addMuatan(
+                                  namaSopir: nama,
+                                  jumlahMuatan: muatan,
+                                  tanggal: tanggal,
+                                );
+                              } catch (e) {
+                                Get.snackbar('Error', 'Input tidak valid: $e');
+                              }
+                            },
+                    icon:
+                        controller.isLoading.value
+                            ? const SizedBox(
+                              width: 18,
+                              height: 18,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 2,
+                              ),
+                            )
+                            : const Icon(Icons.save, color: Colors.white),
+                    label: Text(
+                      controller.isLoading.value ? 'Menyimpan...' : 'Simpan',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold, // 🔤 Bold
+                        color: Colors.white, // 🔤 Putih
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue, // 🎨 Warna biru
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      textStyle: const TextStyle(fontSize: 16),
+                    ),
+                  );
+                }),
               ],
             ),
           ),

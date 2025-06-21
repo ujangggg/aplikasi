@@ -1,3 +1,5 @@
+import 'package:aplikasi/app/modules/edit/bindings/edit_binding.dart';
+import 'package:aplikasi/app/modules/edit/views/edit_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/create/bindings/create_binding.dart';
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.UPDATE,
       page: () => const UpdateView(),
       binding: UpdateBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT,
+      page: () => const EditView(),
+      binding: EditBinding(),
     ),
   ];
 }
